@@ -1,39 +1,45 @@
-# Assignment Five
-## Purpose
+# CSC3916 Assignment 4 - Movie API with Reviews
 
-The purpose of this assignment is to create a React Single Page App over your developed API.  The interface will allow the users to search for movies, display information about the movie, see stored ratings, and allow the user to enter a rating.
+## Description
+A RESTful API built with Node.js, Express, and MongoDB that supports movies and user reviews.
+Users can sign up, sign in with JWT authentication, manage movies, and submit reviews.
+Reviews are aggregated with movies using MongoDB's `$lookup` operator.
 
-## Pre-Requirements
-- Assignment 3 deployed REACT app that supports SignUp and Logon
-- Assignment 4 that supports reviews
+## Installation
+1. Clone the repository
+2. Run `npm install`
+3. Create a `.env` file with the following variables:
+```
+DB=your_mongodb_connection_string
+SECRET_KEY=your_secret_key
+UNIQUE_KEY=your_unique_key
+```
+4. Run `node server.js`
 
-## Requirements
-- Update your API to support storing an image (or image URL) for the movies you have stored.  You will use the image URL in your React application to show the image of movies
-    - New Attribute on the movie collection
-- For this assignment all your endpoints should be protected by JWT authentication
-- Implement the following interfaces
-    - User SignUp and User Logon
-        - Leverage your User mongoDB collection to store new users of the application
-    - Main screen should show the top rated movies (show at least 5)
-        - Your GET /movies endpoint should sort by rating (server side)
-            - Update your /movies (with reviews=true) endpoint to sort by average rating descending
-    - Movie Detail screen, shows the Movie, Image, Actors that were in the movie, aggregated rating for the movie and grid that shows the reviews (username, rating, review)
-    - Extra Credit: (7 points) - chapter 25 of (https://www.amazon.com/dp/B0979MGJ5J?_encoding=UTF8&psc=1&ref_=cm_sw_r_cp_ud_dp_M9YGPJNZWB3BK0P59QX3) Movie Search – show results in a grid, accordion or other list control
-        - Add Search API (HTTP POST) to the API that can take partial movie names or partial actor names
+## API Endpoints
+| Method | Endpoint | Auth Required | Description |
+|--------|----------|---------------|-------------|
+| POST | /signup | No | Register a new user |
+| POST | /signin | No | Login and receive JWT token |
+| GET | /movies | Yes | Get all movies |
+| POST | /movies | Yes | Add a new movie |
+| GET | /movies/:movieId | Yes | Get movie by ID |
+| PUT | /movies/:movieId | Yes | Update a movie |
+| DELETE | /movies/:movieId | Yes | Delete a movie |
+| GET | /reviews | Yes | Get all reviews |
+| POST | /reviews | Yes | Add a review (username pulled from JWT) |
 
-## Submissions
-- User is able to Sign-up (name, username, password)
-- User is able to Logon to the application (username, password)
-- User is able to see list of movies and select a movie to see the detail screen (top rated movies displayed)
-- User is able to enter a review on the detail page (enter a rating and comment) – the logged in user’s username will be associated with the review (as captured from the JSON Web Token)
+## Usage
+Add `?reviews=true` to any GET movie request to include aggregated reviews and average rating:
+```
+GET /movies?reviews=true
+GET /movies/:movieId?reviews=true
+```
 
-## Rubic
-- -3 Not able to add comments
-- -2 Not aggregating rating (average rating)
-- -3 if not pointed to correct end point (e.g Hw4 endpoint)
-- -5 if you don’t have a react web site deployed 
+## Deployed API
+https://csci3916-hw4-g2px.onrender.com
 
-## Resources
-- https://github.com/facebook/create-react-app
-- https://github.com/mars/create-react-app-buildpack#user-content-requires
+## Postman Test Collection
+[View Postman Collection and Environment](postman/)
+
 
