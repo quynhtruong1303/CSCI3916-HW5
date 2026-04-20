@@ -1,0 +1,755 @@
+{
+  "info": {
+    "_postman_id": "7f5faf9e-df4c-43d7-893a-3c370c7b305f",
+    "name": "CSCI3916_HW5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51835208",
+    "_collection_link": "https://go.postman.co/collection/51835208-7f5faf9e-df4c-43d7-893a-3c370c7b305f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "POST /movies - Add 5 movies",
+      "item": [
+        {
+          "name": "Movie 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Movie saved with imageUrl\", () => {",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.success).to.be.true;",
+                  "    pm.expect(json.movie.imageUrl).to.exist;",
+                  "    pm.collectionVariables.set(\"movieId\", json.movie._id);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"The Dark Knight\",\n  \"releaseDate\": 2008,\n  \"genre\": \"Action\",\n  \"imageUrl\": \"https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg\",\n  \"actors\": [\n    { \"actorName\": \"Christian Bale\", \"characterName\": \"Bruce Wayne\" },\n    { \"actorName\": \"Heath Ledger\", \"characterName\": \"The Joker\" },\n    { \"actorName\": \"Aaron Eckhart\", \"characterName\": \"Harvey Dent\" }\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://csci3916-hw5-qrly.onrender.com/movies",
+              "protocol": "https",
+              "host": [
+                "csci3916-hw5-qrly",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Movie 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Movie saved\", () => pm.expect(pm.response.json().success).to.be.true);",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"The Godfather\",\n  \"releaseDate\": 1972,\n  \"genre\": \"Drama\",\n  \"imageUrl\": \"https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg\",\n  \"actors\": [\n    { \"actorName\": \"Marlon Brando\", \"characterName\": \"Vito Corleone\" },\n    { \"actorName\": \"Al Pacino\", \"characterName\": \"Michael Corleone\" },\n    { \"actorName\": \"James Caan\", \"characterName\": \"Sonny Corleone\" }\n  ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://csci3916-hw5-qrly.onrender.com/movies",
+              "protocol": "https",
+              "host": [
+                "csci3916-hw5-qrly",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Movie 3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Movie saved\", () => pm.expect(pm.response.json().success).to.be.true);",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"title\": \"Interstellar\", \"releaseDate\": 2014, \"genre\": \"Science Fiction\",\n  \"imageUrl\": \"https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg\",\n  \"actors\": [\n    { \"actorName\": \"Matthew McConaughey\", \"characterName\": \"Cooper\" },\n    { \"actorName\": \"Anne Hathaway\", \"characterName\": \"Brand\" },\n    { \"actorName\": \"Jessica Chastain\", \"characterName\": \"Murph\" }\n  ]}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://csci3916-hw5-qrly.onrender.com/movies",
+              "protocol": "https",
+              "host": [
+                "csci3916-hw5-qrly",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Movie 4",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Movie saved\", () => pm.expect(pm.response.json().success).to.be.true);",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"title\": \"The Shawshank Redemption\", \"releaseDate\": 1994, \"genre\": \"Drama\",\n  \"imageUrl\": \"https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg\",\n  \"actors\": [\n    { \"actorName\": \"Tim Robbins\", \"characterName\": \"Andy Dufresne\" },\n    { \"actorName\": \"Morgan Freeman\", \"characterName\": \"Ellis Boyd\" },\n    { \"actorName\": \"Bob Gunton\", \"characterName\": \"Warden Norton\" }\n  ]}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://csci3916-hw5-qrly.onrender.com/movies",
+              "protocol": "https",
+              "host": [
+                "csci3916-hw5-qrly",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Movie 5",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Movie saved\", () => pm.expect(pm.response.json().success).to.be.true);",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"title\": \"The Good, the Bad and the Ugly\", \"releaseDate\": 1966, \"genre\": \"Western\",\n  \"imageUrl\": \"https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg\",\n  \"actors\": [\n    { \"actorName\": \"Clint Eastwood\", \"characterName\": \"Blondie\" },\n    { \"actorName\": \"Lee Van Cleef\", \"characterName\": \"Angel Eyes\" },\n    { \"actorName\": \"Eli Wallach\", \"characterName\": \"Tuco\" }\n  ]}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://csci3916-hw5-qrly.onrender.com/movies",
+              "protocol": "https",
+              "host": [
+                "csci3916-hw5-qrly",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "movies"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "POST /signup",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Generate random values and save to collection variables",
+              "// so both signup AND signin can reuse the same credentials",
+              "pm.collectionVariables.set(\"randomUsername\", \"user_\" + Math.random().toString(36).substring(2, 8));",
+              "pm.collectionVariables.set(\"randomPassword\", \"pass_\" + Math.random().toString(36).substring(2, 8));"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Signup successful\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.success).to.be.true;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test User\",\n  \"username\": \"{{randomUsername}}\",\n  \"password\": \"{{randomPassword}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/signup",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /signin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Returns JWT token\", () => {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.token).to.exist;",
+              "    pm.collectionVariables.set(\"token\", json.token);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{randomUsername}}\",\n  \"password\": \"{{randomPassword}}\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/signin",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "signin"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /reviews - Valid review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Review created\", () => pm.expect(pm.response.json().message).to.equal(\"Review created!\"));",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"movieId\": \"{{movieId}}\",\n  \"review\": \"Best Batman performance on the big screen yet!\",\n  \"rating\": 5\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/reviews",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "reviews"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /reviews - Invalid movieId",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 404\", () => pm.response.to.have.status(404));",
+              "pm.test(\"Movie not found\", () => pm.expect(pm.response.json().message).to.equal(\"Movie not found.\"));",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"movieId\": \"000000000000000000000000\",\n  \"review\": \"Fake movie.\",\n  \"rating\": 1\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/reviews",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "reviews"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /movies - All movies, no reviews",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Returns array without reviews\", () => {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.be.an(\"array\");",
+              "    pm.expect(json[0]).to.not.have.property(\"reviews\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/movies",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /movies - with reviews, sorted by avgRating",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Sorted by avgRating desc with reviews\", () => {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.be.an(\"array\");",
+              "    pm.expect(json[0]).to.have.property(\"reviews\");",
+              "    pm.expect(json[0]).to.have.property(\"avgRating\");",
+              "    if (json.length > 1 && json[0].avgRating != null && json[1].avgRating != null) {",
+              "        pm.expect(json[0].avgRating).to.be.at.least(json[1].avgRating);",
+              "    }",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/movies?reviews=true",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "movies"
+          ],
+          "query": [
+            {
+              "key": "reviews",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /movies -  Single movie with reviews",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Returns movie with reviews and avgRating\", () => {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.title).to.exist;",
+              "    pm.expect(json.reviews).to.be.an(\"array\");",
+              "    pm.expect(json.avgRating).to.exist;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/movies/{{movieId}}?reviews=true",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "movies",
+            "{{movieId}}"
+          ],
+          "query": [
+            {
+              "key": "reviews",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /movies - Invalid movie",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 404\", () => pm.response.to.have.status(404));",
+              "pm.test(\"Movie not found\", () => pm.expect(pm.response.json().message).to.equal(\"Movie not found.\"));",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/movies/000000000000000000000000",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "movies",
+            "000000000000000000000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /search - By title",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Returns matching movies\", () => {",
+              "    pm.expect(pm.response.json()).to.be.an(\"array\").with.length.above(0);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"title\": \"dark\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://csci3916-hw5-qrly.onrender.com/search",
+          "protocol": "https",
+          "host": [
+            "csci3916-hw5-qrly",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "search"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /search - By actor name",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "randomUsername",
+      "value": ""
+    },
+    {
+      "key": "randomPassword",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "movieId",
+      "value": ""
+    }
+  ]
+}
